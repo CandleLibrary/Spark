@@ -1,0 +1,40 @@
+{
+  "name": "@candlefw/spark",
+  "version": "0.0.1",
+  "description": "Simple Task Scheduler",
+  "main": "source/spark.mjs",
+  "scripts": {
+    "test": "mocha -r esm"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/galactrax/cfw-spark.git"
+  },
+
+  "keywords": [
+      "task", "scheduler"
+  ],
+
+  "author": "Anthony Weathersby",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/galactrax/cfw-spark/issues"
+  },
+
+  "directories": {
+    "test": "test"
+  },
+
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "esm": "^3.0.84",
+    "mocha": "^5.2.0"
+  },
+
+  "jshintConfig": {
+    "esversion": 6,
+    "unused": true
+  },
+
+  "homepage": "https://github.com/galactrax/cfw-spark#readme"
+}
