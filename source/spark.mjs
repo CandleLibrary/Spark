@@ -35,8 +35,6 @@ class Spark {
         this.frame_time = perf.now();
 
         this._SCHD_ = false;
-
-
     }
 
     /**
@@ -115,7 +113,8 @@ class Spark {
     }
 }
 
-const spark = new Scheduler();
+const spark = new Spark();
 
-export {Scheduler};
+export {Spark};
+
 export default spark;
