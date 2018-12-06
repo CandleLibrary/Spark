@@ -3,13 +3,12 @@
  *
  * Depending on the platform, caller will either map to requestAnimationFrame or it will be a setTimout.
  */
-const caller = (window && window.requestAnimationFrame) ? window.requestAnimationFrame : (f) => {
+ 
+const caller = (typeof(window) == "object" && window.requestAnimationFrame) ? window.requestAnimationFrame : (f) => {
     setTimeout(f, 1);
 };
 
-
 const perf = (typeof(performance) == "undefined") ? { now: () => Date.now() } : performance;
-
 
 
 /**

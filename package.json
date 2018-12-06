@@ -1,11 +1,16 @@
 {
   "name": "@candlefw/spark",
-  "version": "0.0.2",
+
+  "version": "0.0.3",
+
   "description": "Simple Task Scheduler",
+
   "main": "source/spark.mjs",
+
   "scripts": {
     "test": "mocha -r esm"
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/galactrax/cfw-spark.git"
