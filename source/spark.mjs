@@ -29,7 +29,18 @@ class Spark {
 
         this.queue_switch = 0;
 
-        this.callback = () => this.update();
+        this.callback = ()=>{}
+
+
+        if(typeof(window) !== "undefined"){
+            window.addEventListener("load",()=>{
+                this.callback = () => this.update();
+                caller(this.callback);
+            })
+        }else{
+            this.callback = () => this.update();
+        }
+
 
         this.frame_time = perf.now();
 
@@ -60,9 +71,11 @@ class Spark {
 
         this.frame_time = perf.now() | 0;
 
-        this.SCHEDULE_PENDING = true;
 
-        caller(this.callback);
+        if(!this.SCHEDULE_PENDING){
+            this.SCHEDULE_PENDING = true;
+            caller(this.callback);
+        }
     }
 
     removeFromQueue(object){
