@@ -1,8 +1,8 @@
 {
   "name": "@candlefw/spark",
-  "version": "0.0.6-0",
+  "version": "0.0.6",
   "description": "Simple Task Scheduler",
-  "main": "source/spark.mjs",
+  "main": "source/spark.js",
   "scripts": {
     "test": "mocha -r esm"
   },
