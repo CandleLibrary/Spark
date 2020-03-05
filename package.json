@@ -2,7 +2,9 @@
   "name": "@candlefw/spark",
   "version": "0.0.8",
   "description": "Simple Task Scheduler",
-  "main": "source/spark.mjs",
+  "main": "build/library/spark.ts",
+  "types":"build/types/spark.d.ts",
+  "type":"module",
   "scripts": {
     "test": "mocha -r esm"
   },
