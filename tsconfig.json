@@ -1,0 +1,22 @@
+{
+    "compileOnSave": true,
+    "files": [
+        "source/spark.ts"
+    ],
+    "compilerOptions": {
+        "types": [],
+        "allowJs": true,
+        "baseUrl": "./",
+        "alwaysStrict": true,
+        "target": "ES2020",
+        "lib": [
+            "ES2020"
+        ],
+        "outDir": "./build/library",
+        "declarationDir": "./build/types",
+        "declaration": true,
+        "moduleResolution": "node",
+        "module": "ESNext",
+        "watch": true
+    }
+}
