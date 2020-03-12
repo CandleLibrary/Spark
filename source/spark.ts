@@ -29,7 +29,7 @@ interface Sparky {
      * 
      * @private
      */
-    _SCHD_: number;
+    _SCHD_?: number;
 }
 
 
@@ -174,6 +174,14 @@ class Spark {
      */
     handleError(e: any) {
         console.log(e);
+    }
+
+    async sleep(timeout = 1) {
+        return new Promise(res => {
+            this.queueUpdate({
+                scheduledUpdate: () => res()
+            }, timeout);
+        });
     }
 }
 
