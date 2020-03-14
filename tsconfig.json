@@ -16,7 +16,6 @@
         "declarationDir": "./build/types",
         "declaration": true,
         "moduleResolution": "node",
-        "module": "ESNext",
-        "watch": true
+        "module": "ESNext"
     }
 }
