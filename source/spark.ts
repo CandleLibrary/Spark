@@ -1,3 +1,5 @@
+import { addModuleToCFW } from "@candlefw/cfw";
+
 /**
  * Used to call the Scheduler after a JavaScript runtime tick.
  *
@@ -188,4 +190,6 @@ class Spark {
 const spark = new Spark();
 
 export { Spark as SparkConstructor, Sparky };
+
+addModuleToCFW(spark, "spark");
 export default spark;
