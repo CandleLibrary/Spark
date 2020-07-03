@@ -5,8 +5,8 @@ import { addModuleToCFW } from "@candlefw/cfw";
  *
  * Depending on the platform, caller will either map to requestAnimationFrame or it will be a setTimout.
  */
-const caller = (typeof (window) == "object" && window.requestAnimationFrame) ? window.requestAnimationFrame : (f) => {
-    setTimeout(f, 1);
+const caller = (typeof (window) == "object" && window.requestAnimationFrame) ? window.requestAnimationFrame : f => {
+    setTimeout(f, 5);
 };
 
 const perf = (typeof (performance) == "undefined") ? { now: () => Date.now() } : performance;
@@ -55,18 +55,19 @@ class Spark {
         this.update_queue_b = [];
         this.update_queue = this.update_queue_a;
         this.queue_switch = 0;
-        this.callback = () => { };
+        this.callback = this.update.bind(this);
 
         if (typeof (window) !== "undefined") {
             window.addEventListener("load", () => {
-                this.callback = () => this.update();
                 caller(this.callback);
             });
         } else {
-            this.callback = () => this.update();
+            this.callback = this.update.bind(this);
+            caller(this.callback);
         }
 
         this.frame_time = perf.now();
+
         this.SCHEDULE_PENDING = false;
     }
 
@@ -120,7 +121,6 @@ class Spark {
      * Called by the caller function every tick. Calls .update on any object queued for an update. 
      */
     update() {
-
         this.SCHEDULE_PENDING = false;
 
         const
@@ -128,6 +128,8 @@ class Spark {
             time = perf.now() | 0,
             diff = Math.ceil(time - this.frame_time) | 1,
             step_ratio = (diff * 0.06); //  step_ratio of 1 = 16.66666666 or 1000 / 60 for 60 FPS
+
+
 
         this.frame_time = time;
 
@@ -190,6 +192,4 @@ class Spark {
 const spark = new Spark();
 
 export { Spark as SparkConstructor, Sparky };
-
-addModuleToCFW(spark, "spark");
-export default spark;
+export default addModuleToCFW(spark, "spark");
