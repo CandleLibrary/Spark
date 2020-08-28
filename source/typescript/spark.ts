@@ -190,4 +190,6 @@ class Spark {
 const spark = new Spark();
 
 export { Spark as SparkConstructor, Sparky };
-export default addModuleToCFW(spark, "spark");
+
+addModuleToCFW(spark, "spark");
+export default spark;
