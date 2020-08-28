@@ -1,7 +1,7 @@
 {
     "compileOnSave": true,
     "files": [
-        "source/spark.ts"
+        "source/typescript/spark.ts"
     ],
     "compilerOptions": {
         "types": [],

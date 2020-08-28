@@ -176,9 +176,7 @@ class Spark {
      * 
      * @param e - error object
      */
-    handleError(e: any) {
-        console.log(e);
-    }
+    handleError(e: any) { console.log(e); }
 
     async sleep(timeout = 1) {
         return new Promise(res => {
