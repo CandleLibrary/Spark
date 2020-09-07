@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/galactrax/cfw-spark.git"
+    "url": "git+https://github.com/candlefw/spark.git"
   },
   "keywords": [
     "task",
@@ -19,7 +19,7 @@
   "author": "Anthony Weathersby",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/galactrax/cfw-spark/issues"
+    "url": "https://github.com/candlefw/spark/issues"
   },
   "directories": {
     "test": "test"
@@ -29,5 +29,5 @@
     "esversion": 6,
     "unused": true
   },
-  "homepage": "https://github.com/galactrax/cfw-spark#readme"
+  "homepage": "https://github.com/candlefw/spark#readme"
 }
