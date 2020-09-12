@@ -1,6 +1,6 @@
 {
   "name": "@candlefw/spark",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Simple Task Scheduler",
   "main": "build/library/spark.js",
   "types": "build/types/spark.d.ts",

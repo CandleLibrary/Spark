@@ -57,7 +57,7 @@ class Spark {
         this.queue_switch = 0;
         this.callback = this.update.bind(this);
 
-        if (typeof (window) !== "undefined") {
+        if (typeof (window) !== "undefined" && window.addEventListener) {
             window.addEventListener("load", () => {
                 caller(this.callback);
             });
