@@ -10,7 +10,8 @@
         "alwaysStrict": true,
         "target": "ES2020",
         "lib": [
-            "ES2020"
+            "ES2020",
+            "DOM"
         ],
         "outDir": "./build/library",
         "declarationDir": "./build/types",
