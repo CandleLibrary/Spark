@@ -1,33 +1,33 @@
 {
-  "name": "@candlefw/spark",
-  "version": "0.1.2",
-  "description": "Simple Task Scheduler",
-  "main": "build/library/spark.js",
-  "types": "build/types/spark.d.ts",
-  "type": "module",
-  "scripts": {
-    "test": "tsc -p ./tsconfig.json"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/candlefw/spark.git"
-  },
-  "keywords": [
-    "task",
-    "scheduler"
-  ],
-  "author": "Anthony Weathersby",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/candlefw/spark/issues"
-  },
-  "directories": {
-    "test": "test"
-  },
-  "devDependencies": {},
-  "jshintConfig": {
-    "esversion": 6,
-    "unused": true
-  },
-  "homepage": "https://github.com/candlefw/spark#readme"
+    "name": "@candlelib/spark",
+    "version": "0.2.0",
+    "description": "Simple Task Scheduler",
+    "main": "build/library/spark.js",
+    "types": "build/types/spark.d.ts",
+    "type": "module",
+    "scripts": {
+        "test": "tsc -p ./tsconfig.json"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/CandleLibrary/spark.git"
+    },
+    "keywords": [
+        "task",
+        "scheduler"
+    ],
+    "author": "Anthony Weathersby",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/CandleLibrary/spark/issues"
+    },
+    "directories": {
+        "test": "test"
+    },
+    "devDependencies": {},
+    "jshintConfig": {
+        "esversion": 6,
+        "unused": true
+    },
+    "homepage": "https://github.com/CandleLibrary/spark#readme"
 }
