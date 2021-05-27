@@ -1,4 +1,4 @@
-import { addModuleToCFW } from "@candlefw/cfw";
+import { addModuleToCFW } from "@candlelib/candle";
 
 /**
  * Used to call the Scheduler after a JavaScript runtime tick.

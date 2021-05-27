@@ -7,7 +7,7 @@ Simple task scheduler.
 ### NPM 
 
 ```bash
-npm install --save @candlefw/spark
+npm install --save @candlelib/spark
 ```
 
 ## Usage
