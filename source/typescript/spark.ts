@@ -217,6 +217,3 @@ const spark = new Spark();
 
 export { Spark as SparkConstructor, Sparky };
 export default spark;
-
-import { addModuleToCFW } from "@candlelib/candle";
-addModuleToCFW(spark, "spark");
