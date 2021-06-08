@@ -1,4 +1,4 @@
-# CandleFW Spark
+# CandleLibrary Spark
 
 Simple task scheduler.
 

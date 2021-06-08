@@ -24,7 +24,9 @@
     "directories": {
         "test": "test"
     },
-    "devDependencies": {},
+    "devDependencies": {
+        "@candlelib/cure": "*"
+    },
     "jshintConfig": {
         "esversion": 6,
         "unused": true
