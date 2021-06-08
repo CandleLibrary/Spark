@@ -1,11 +1,11 @@
-import { addModuleToCFW } from "@candlelib/candle";
+
 
 /**
  * Used to call the Scheduler after a JavaScript runtime tick.
  *
  * Depending on the platform, caller will either map to requestAnimationFrame or it will be a setTimout.
  */
-const caller = (typeof (window) == "object" && window.requestAnimationFrame) ? window.requestAnimationFrame : f => {
+const caller = (typeof (window) == "object" && window?.requestAnimationFrame) ? window.requestAnimationFrame : f => {
     setTimeout(f, 5);
 };
 
@@ -49,6 +49,8 @@ class Spark {
     SCHEDULE_PENDING: boolean;
     callback: () => void;
 
+    ACTIVE_UPDATE: boolean;
+
     constructor() {
 
         this.update_queue_a = [];
@@ -69,6 +71,7 @@ class Spark {
         this.frame_time = perf.now();
 
         this.SCHEDULE_PENDING = false;
+        this.ACTIVE_UPDATE = false;
     }
 
     /**
@@ -80,29 +83,47 @@ class Spark {
      * @param object 
      * @param time_start 
      * @param time_end - Tha m 
+     * @param NOW - Forces the new scheduled task to occur with the current cycle
      */
-    queueUpdate(object: Sparky, time_start: number = 1, time_end: number = 0) {
+    queueUpdate(object: Sparky, time_start: number = 1, time_end: number = 0, NOW = false) {
 
-        if (object._SCHD_ || object._SCHD_ > 0) {
-            if (this.SCHEDULE_PENDING)
-                return;
+        if (NOW && this.ACTIVE_UPDATE) {
+            if (object._SCHD_ == 1) return;
+            if (this.queue_switch == 1)
+                this.update_queue_a.push(object);
             else
-                return caller(this.callback);
-        }
+                this.update_queue_b.push(object);
+        } else {
 
-        object._SCHD_ = ((time_start & 0xFFFF) | ((time_end) << 16));
+            const IsInt = typeof object._SCHD_ == "number";
 
-        this.update_queue.push(object);
+            if (IsInt && object._SCHD_ > 0)
+                if (this.SCHEDULE_PENDING)
+                    return;
+                else
+                    return caller(this.callback);
 
-        this.frame_time = perf.now() | 0;
+            // Forcibly assign a number to obj ._SCHD_. Perhaps warn of type is not 
+            // number to begin with. 
 
-        if (!this.SCHEDULE_PENDING) {
-            this.SCHEDULE_PENDING = true;
-            caller(this.callback);
+            //if (!IsInt)
+            //    console.trace("object._SCHD_ is NaN");
+
+            object._SCHD_ = ((time_start & 0xFFFF) | ((time_end) << 16)) << 1;
+
+            this.update_queue.push(object);
+
+            this.frame_time = perf.now() | 0;
+
+            if (!this.SCHEDULE_PENDING) {
+                this.SCHEDULE_PENDING = true;
+                caller(this.callback);
+            }
         }
     }
 
-    removeFromQueue(object) {
+
+    removeFromQueue(object: Sparky) {
 
         if (object._SCHD_)
             for (let i = 0, l = this.update_queue.length; i < l; i++)
@@ -123,13 +144,13 @@ class Spark {
     update() {
         this.SCHEDULE_PENDING = false;
 
+        this.ACTIVE_UPDATE = true;
+
         const
             uq = this.update_queue,
             time = perf.now() | 0,
             diff = Math.ceil(time - this.frame_time) | 1,
             step_ratio = (diff * 0.06); //  step_ratio of 1 = 16.66666666 or 1000 / 60 for 60 FPS
-
-
 
         this.frame_time = time;
 
@@ -138,9 +159,12 @@ class Spark {
         else
             (this.update_queue = this.update_queue_a, this.queue_switch = 0);
 
-        for (let i = 0, l = uq.length, o = uq[0]; i < l; o = uq[++i]) {
-            let timestart = ((o._SCHD_ & 0xFFFF)) - diff;
-            let timeend = ((o._SCHD_ >> 16) & 0xFFFF);
+        for (let i = 0, l = uq.length, o = uq[0]; i < uq.length; o = uq[++i]) {
+
+            let
+                schd = o._SCHD_ >> 1,
+                timestart = ((schd & 0xFFFF)) - diff,
+                timeend = ((schd >> 16) & 0xFFFF);
 
             o._SCHD_ = 0;
 
@@ -166,6 +190,8 @@ class Spark {
             }
         }
 
+        this.ACTIVE_UPDATE = false;
+
         uq.length = 0;
     }
     /**
@@ -181,7 +207,7 @@ class Spark {
     async sleep(timeout = 1) {
         return new Promise(res => {
             this.queueUpdate({
-                scheduledUpdate: () => res()
+                scheduledUpdate: () => res(1)
             }, timeout);
         });
     }
@@ -190,6 +216,7 @@ class Spark {
 const spark = new Spark();
 
 export { Spark as SparkConstructor, Sparky };
-
-addModuleToCFW(spark, "spark");
 export default spark;
+
+import { addModuleToCFW } from "@candlelib/candle";
+addModuleToCFW(spark, "spark");
