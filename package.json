@@ -1,6 +1,6 @@
 {
     "name": "@candlelib/spark",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "Simple Task Scheduler",
     "main": "build/library/spark.js",
     "types": "build/types/spark.d.ts",
