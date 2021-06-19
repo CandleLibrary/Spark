@@ -13,6 +13,12 @@
         "type": "git",
         "url": "git+https://github.com/CandleLibrary/spark.git"
     },
+    "files": [
+        "/build",
+        "/README.md",
+        "/CHANGELOG.md",
+        "/LICENSE"
+    ],
     "keywords": [
         "task",
         "scheduler"
